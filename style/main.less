@@ -1,0 +1,52 @@
+@images:'../../img';
+
+@import './variables';
+
+body,
+html {
+    min-height: 100%;
+    height: auto;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    background-color: @back;
+    font-size: 14px;
+    font-family: "Helvetica Neue", Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+    line-height: 1.428571429;
+    color: #000000;
+    .globalHeader {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1001;
+        &.noSubHeader + main {
+            padding-top: 50px;
+        }
+    }
+    main {
+        min-height: calc(~"100vh - 41px");
+        box-sizing: border-box;
+        margin: 0 auto;
+        padding-top: 86px;
+    }
+}
+@media screen and (min-width: 700px) and (max-width: 1024px) {
+    main {
+        width: 980px;
+    }
+    .container {
+        width: 980px;
+    }
+}
+@media screen and (min-width: 1030px) {
+    main {
+        width: 1190px;
+    }
+    .container {
+        width: 1190px;
+    }
+}
