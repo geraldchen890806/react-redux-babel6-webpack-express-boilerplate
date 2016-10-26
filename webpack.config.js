@@ -5,16 +5,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
-    entry: [
-        'webpack-hot-middleware/client',
-        './js/index'
-    ],
+    entry: {
+        app: ['eventsource-polyfill',
+            'webpack-hot-middleware/client',
+            './js/index'
+        ],
+        vendor: ['eventsource-polyfill', 'webpack-hot-middleware/client','react', 'redux', 'react-redux']
+    },
     output: {
-        filename: 'bundle.js',
+        filename: 'main.[chunkHash].js',
         path: path.join(__dirname, 'dist'),
         publicPath: '/static/'
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin( /* chunkName= */ "vendor", /* filename= */ "vendor.[hash].js"),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html'
